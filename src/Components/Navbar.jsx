@@ -1,17 +1,18 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
-import { Navbar, Nav, Container, NavDropdown, Form, Button, Modal } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Modal } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   FaHome, FaInfoCircle, FaProjectDiagram, 
-  FaEnvelope, FaPhone, FaTimes, FaPaperPlane,
-  FaFacebook, FaTwitter, FaInstagram, FaLinkedin
+  FaEnvelope, FaImages, FaFish, FaPiggyBank, FaLeaf 
 } from 'react-icons/fa';
-import logo from '../assets/logo.png'; // Import your logo
+import logo from '../assets/logo.png';
 
 const Navigation = () => {
   const [expanded, setExpanded] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [showInitiativeModal, setShowInitiativeModal] = useState(false);
+  const [currentInitiative, setCurrentInitiative] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -19,6 +20,8 @@ const Navigation = () => {
     message: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const location = useLocation();
 
   // Close navbar when route changes
@@ -40,17 +43,51 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle contact form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
-    
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setShowContact(false);
-    }, 3000);
+  // Initiative details
+  const initiativeDetails = {
+    'fish-farming': {
+      title: 'Sustainable Fish Farming',
+      icon: <FaFish className="me-2" />,
+      description: 'Our fish farming initiative empowers women through sustainable aquaculture practices. We provide training in pond construction, fish breeding, feeding techniques, and water quality management.',
+      benefits: [
+        'Increased household income and food security',
+        'Training in modern aquaculture techniques',
+        'Access to markets and distribution networks',
+        'Environmental conservation through sustainable practices'
+      ],
+      impact: 'Over 120 women trained, producing 5 tons of fish annually'
+    },
+    'table-banking': {
+      title: 'Community Table Banking',
+      icon: <FaPiggyBank className="me-2" />,
+      description: 'Our table banking program enables women to access financial services through a community-based savings and lending model. Members pool resources and provide microloans to each other.',
+      benefits: [
+        'Access to interest-free loans without collateral',
+        'Financial literacy and business management training',
+        'Community support and accountability systems',
+        'Empowerment through collective decision-making'
+      ],
+      impact: '15 active groups with over $25,000 in collective savings'
+    },
+    conservation: {
+      title: 'Environmental Conservation',
+      icon: <FaLeaf className="me-2" />,
+      description: 'Our conservation efforts focus on protecting local ecosystems while creating sustainable livelihoods. Activities include mangrove restoration, waste management, and sustainable agriculture.',
+      benefits: [
+        'Mangrove restoration along 5km of coastline',
+        'Plastic waste recycling initiatives',
+        'Training in sustainable farming practices',
+        'Eco-tourism development projects'
+      ],
+      impact: '12,000 mangrove saplings planted, 8 tons of plastic recycled monthly'
+    }
+  };
+
+  // Handle initiative click
+  const handleInitiativeClick = (initiative) => {
+    setCurrentInitiative(initiativeDetails[initiative]);
+    setShowInitiativeModal(true);
+    setExpanded(false);
   };
 
   // Handle form input changes
@@ -63,6 +100,69 @@ const Navigation = () => {
   const handleContactClick = () => {
     setShowContact(true);
     setExpanded(false);
+  };
+
+  // Handle contact form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch('https://andera.pythonanywhere.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        }),
+        mode: 'cors'
+      });
+
+      // Handle non-2xx responses
+      if (!response.ok) {
+        // Try to get error details from response
+        let errorDetails = 'Server error';
+        try {
+          const errorData = await response.json();
+          errorDetails = errorData.detail || errorData.message || JSON.stringify(errorData);
+        } catch (e) {
+          errorDetails = `Status: ${response.status} ${response.statusText}`;
+        }
+        
+        throw new Error(`Request failed: ${errorDetails}`);
+      }
+
+      const responseData = await response.json();
+      console.log('Form submission successful:', responseData);
+      
+      setFormSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      
+      let errorMessage = error.message;
+      if (error.message.includes('Failed to fetch')) {
+        errorMessage = 'Network error. Please check your internet connection.';
+      } else if (error.message.includes('CORS')) {
+        errorMessage = 'Security restriction. Please contact us directly.';
+      }
+      
+      setSubmitError(
+        <div>
+          <p>{errorMessage}</p>
+          <p className="mt-2">
+            You can also contact us directly at{" "}
+            <a href="mailto:contact@bukanimamatoto.org">contact@bukanimamatoto.org</a>
+          </p>
+        </div>
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -107,7 +207,7 @@ const Navigation = () => {
                 <FaHome className="me-1" /> Home
               </Nav.Link>
               <Nav.Link as={Link} to="/about" className="nav-link">
-                <FaInfoCircle className="me-1" /> About Us
+                <FaInfoCircle className="me-1" /> About
               </Nav.Link>
               
               <NavDropdown 
@@ -119,16 +219,41 @@ const Navigation = () => {
                 id="nav-initiatives"
                 className="nav-dropdown"
               >
-                <NavDropdown.Item as={Link} to="/initiatives/fish-farming" className="dropdown-item">
-                  Fish Cage Farming
+                <NavDropdown.Item 
+                  as="div"
+                  className="dropdown-item"
+                  onClick={() => handleInitiativeClick('fish-farming')}
+                >
+                  <div className="d-flex align-items-center">
+                    <FaFish className="me-2" />
+                    Fish Farming
+                  </div>
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/initiatives/table-banking" className="dropdown-item">
-                  Table Banking
+                <NavDropdown.Item 
+                  as="div"
+                  className="dropdown-item"
+                  onClick={() => handleInitiativeClick('table-banking')}
+                >
+                  <div className="d-flex align-items-center">
+                    <FaPiggyBank className="me-2" />
+                    Table Banking
+                  </div>
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/initiatives/conservation" className="dropdown-item">
-                  Conservation
+                <NavDropdown.Item 
+                  as="div"
+                  className="dropdown-item"
+                  onClick={() => handleInitiativeClick('conservation')}
+                >
+                  <div className="d-flex align-items-center">
+                    <FaLeaf className="me-2" />
+                    Conservation
+                  </div>
                 </NavDropdown.Item>
               </NavDropdown>
+
+              <Nav.Link as={Link} to="/gallery" className="nav-link">
+                <FaImages className="me-1" /> Gallery
+              </Nav.Link>
               
               <Nav.Link 
                 className="nav-link contact-link" 
@@ -136,27 +261,69 @@ const Navigation = () => {
               >
                 <FaEnvelope className="me-1" /> Contact
               </Nav.Link>
-              
-              <div className="d-lg-none mt-3">
-                <div className="social-icons d-flex justify-content-center gap-3">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-                    <FaFacebook />
-                  </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-                    <FaTwitter />
-                  </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-                    <FaInstagram />
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-                    <FaLinkedin />
-                  </a>
-                </div>
-              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      {/* Initiative Details Modal */}
+      <Modal 
+        show={showInitiativeModal} 
+        onHide={() => setShowInitiativeModal(false)}
+        centered
+        size="lg"
+        className="initiative-modal"
+      >
+        <Modal.Header className="position-relative bg-primary text-white">
+          <Modal.Title className="d-flex align-items-center">
+            {currentInitiative?.icon}
+            {currentInitiative?.title}
+          </Modal.Title>
+          <button 
+            type="button" 
+            className="btn-close btn-close-white"
+            onClick={() => setShowInitiativeModal(false)}
+            aria-label="Close"
+          ></button>
+        </Modal.Header>
+        <Modal.Body>
+          {currentInitiative && (
+            <div className="initiative-details">
+              <div className="mb-4">
+                <h5 className="text-primary mb-3">About This Initiative</h5>
+                <p>{currentInitiative.description}</p>
+              </div>
+              
+              <div className="mb-4">
+                <h5 className="text-primary mb-3">Key Benefits</h5>
+                <ul className="benefits-list">
+                  {currentInitiative.benefits.map((benefit, index) => (
+                    <li key={index} className="d-flex align-items-start mb-2">
+                      <i className="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="impact-highlight p-3 rounded bg-light">
+                <h5 className="text-primary mb-2">Our Impact</h5>
+                <p className="mb-0">{currentInitiative.impact}</p>
+              </div>
+              
+              <div className="mt-4 text-center">
+                <Link 
+                  to={`/initiatives/${currentInitiative.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="btn btn-outline-primary"
+                  onClick={() => setShowInitiativeModal(false)}
+                >
+                  Learn More About This Program
+                </Link>
+              </div>
+            </div>
+          )}
+        </Modal.Body>
+      </Modal>
 
       {/* Contact Modal */}
       <Modal 
@@ -167,13 +334,13 @@ const Navigation = () => {
       >
         <Modal.Header className="position-relative">
           <Modal.Title>Contact Us</Modal.Title>
-          <Button 
-            variant="link" 
+          <button 
+            type="button" 
+            className="btn-close close-btn"
             onClick={() => setShowContact(false)}
-            className="close-btn"
-          >
-            <FaTimes />
-          </Button>
+            aria-label="Close"
+            disabled={isSubmitting}
+          ></button>
         </Modal.Header>
         <Modal.Body>
           {formSubmitted ? (
@@ -186,14 +353,14 @@ const Navigation = () => {
             <div>
               <div className="contact-info mb-4">
                 <div className="d-flex align-items-center mb-3">
-                  <FaPhone className="me-3 text-primary" />
+                  <i className="bi bi-telephone me-3 text-primary"></i>
                   <div>
                     <h6>Call Us</h6>
                     <p>+254 719 632 902</p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center">
-                  <FaEnvelope className="me-3 text-primary" />
+                  <i className="bi bi-envelope me-3 text-primary"></i>
                   <div>
                     <h6>Email Us</h6>
                     <p>contact@bukanimamatoto.org</p>
@@ -201,52 +368,75 @@ const Navigation = () => {
                 </div>
               </div>
               
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Your Name</Form.Label>
-                  <Form.Control
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Your Name</label>
+                  <input
                     type="text"
+                    id="name"
                     name="name"
+                    className="form-control"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
                     required
+                    disabled={isSubmitting}
                   />
-                </Form.Group>
+                </div>
                 
-                <Form.Group className="mb-3">
-                  <Form.Label>Email Address</Form.Label>
-                  <Form.Control
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Email Address</label>
+                  <input
                     type="email"
+                    id="email"
                     name="email"
+                    className="form-control"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email"
                     required
+                    disabled={isSubmitting}
                   />
-                </Form.Group>
+                </div>
                 
-                <Form.Group className="mb-3">
-                  <Form.Label>Message</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
+                <div className="mb-3">
+                  <label htmlFor="message" className="form-label">Message</label>
+                  <textarea
+                    id="message"
                     name="message"
+                    className="form-control"
+                    rows={4}
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Your message here..."
                     required
-                  />
-                </Form.Group>
+                    disabled={isSubmitting}
+                  ></textarea>
+                </div>
                 
-                <Button 
-                  variant="primary" 
+                {submitError && (
+                  <div className="alert alert-danger mb-3">
+                    {submitError}
+                  </div>
+                )}
+                
+                <button 
                   type="submit"
-                  className="w-100 submit-btn"
+                  className="btn btn-primary w-100 submit-btn"
+                  disabled={isSubmitting}
                 >
-                  <FaPaperPlane className="me-2" /> Send Message
-                </Button>
-              </Form>
+                  {isSubmitting ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <i className="bi bi-send me-2"></i> Send Message
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           )}
         </Modal.Body>
@@ -324,6 +514,7 @@ const Navigation = () => {
           font-weight: 500;
           transition: all 0.3s ease;
           color: rgba(255, 255, 255, 0.85) !important;
+          white-space: nowrap;
         }
         
         .nav-link:not(.contact-link):hover {
@@ -369,6 +560,7 @@ const Navigation = () => {
         .dropdown-item {
           transition: all 0.3s ease;
           padding: 0.75rem 1.5rem;
+          cursor: pointer;
         }
         
         .dropdown-item:hover {
@@ -407,28 +599,8 @@ const Navigation = () => {
           transform: rotate(-45deg) translate(7px, -7px);
         }
         
-        .social-icons {
-          margin-top: 1rem;
-        }
-        
-        .social-icon {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.1);
-          color: white;
-          transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-          background: #1a936f;
-          transform: translateY(-3px);
-        }
-        
-        .contact-modal .modal-content {
+        .contact-modal .modal-content,
+        .initiative-modal .modal-content {
           border-radius: 15px;
           overflow: hidden;
           border: none;
@@ -463,6 +635,7 @@ const Navigation = () => {
           justify-content: center;
           background: rgba(255, 255, 255, 0.1);
           border-radius: 50%;
+          border: none;
         }
         
         .close-btn:hover {
@@ -497,6 +670,42 @@ const Navigation = () => {
           transform: translateY(-3px);
           box-shadow: 0 5px 15px rgba(26, 147, 111, 0.4);
           background: linear-gradient(135deg, #88d498, #1a936f);
+        }
+        
+        .initiative-details h5 {
+          font-weight: 600;
+          border-bottom: 2px solid #1a936f;
+          padding-bottom: 8px;
+          display: inline-block;
+        }
+        
+        .benefits-list {
+          list-style: none;
+          padding-left: 0;
+        }
+        
+        .benefits-list li {
+          padding: 5px 0;
+        }
+        
+        .impact-highlight {
+          border-left: 4px solid #1a936f;
+          background: rgba(26, 147, 111, 0.05) !important;
+        }
+        
+        .spinner-border {
+          display: inline-block;
+          width: 1rem;
+          height: 1rem;
+          vertical-align: text-bottom;
+          border: 0.15em solid currentColor;
+          border-right-color: transparent;
+          border-radius: 50%;
+          animation: spinner-border 0.75s linear infinite;
+        }
+        
+        @keyframes spinner-border {
+          to { transform: rotate(360deg); }
         }
         
         @keyframes wave {
