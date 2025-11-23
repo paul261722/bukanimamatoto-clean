@@ -1,10 +1,7 @@
 // src/components/Gallery.jsx
-import React, { useState, useRef } from 'react';
+import React from 'react';
 
 const Gallery = () => {
-  const [images, setImages] = useState([]);
-  const fileInputRef = useRef(null);
-  
   // Gallery images from public directory
   const galleryImages = [
     '/images/IMG-20250616-WA0011.jpg',
@@ -15,6 +12,22 @@ const Gallery = () => {
     '/images/IMG-20250616-WA0018.jpg',
     '/images/IMG-20250616-WA0028.jpg',
     '/images/IMG-20250616-WA0015.jpg',
+    '/images/IMG-20250809-WA0009.jpg',
+    '/images/IMG-20250809-WA0010.jpg',
+    '/images/IMG-20250809-WA0011.jpg',
+    '/images/IMG-20250809-WA0012.jpg',
+    '/images/IMG-20250809-WA0013.jpg',
+    '/images/IMG-20250809-WA0014.jpg',
+    '/images/IMG-20250809-WA0015.jpg',
+    '/images/IMG-20250809-WA0016.jpg',
+    '/images/IMG-20250809-WA0018.jpg',
+    '/images/IMG-20250809-WA0019.jpg',
+    '/images/IMG-20250809-WA0022.jpg',
+    '/images/IMG-20250809-WA0023.jpg',
+    '/images/IMG-20250809-WA0024.jpg',
+    '/images/IMG-20250809-WA0025.jpg',
+    '/images/IMG-20250809-WA0027.jpg',
+    '/images/IMG-20250809-WA0030.jpg',
   ];
 
   const imageTitles = [
@@ -25,20 +38,24 @@ const Gallery = () => {
     "Women Empowerment Training",
     "Community Meeting",
     "Blue Economy Project",
-    "New Initiative Launch"
+    "New Initiative Launch",
+    "Sustainable Aquaculture",
+    "Women in Business",
+    "Community Development",
+    "Environmental Protection",
+    "Group Training Session",
+    "Leadership Program",
+    "Skill Development",
+    "Economic Empowerment",
+    "Community Outreach",
+    "Sustainable Practices",
+    "Team Collaboration",
+    "Project Implementation",
+    "Community Engagement",
+    "Development Workshop",
+    "Progress Meeting",
+    "Success Celebration"
   ];
-
-  const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files);
-    if (files.length > 0) {
-      const newImages = files.map(file => URL.createObjectURL(file));
-      setImages([...images, ...newImages]);
-    }
-  };
-
-  const triggerFileInput = () => {
-    fileInputRef.current.click();
-  };
 
   return (
     <div style={styles.container}>
@@ -47,23 +64,8 @@ const Gallery = () => {
         <p style={styles.subtitle}>Documenting our journey of empowerment, sustainability, and community development</p>
       </div>
       
-      <div style={styles.uploadContainer}>
-        <button style={styles.uploadButton} onClick={triggerFileInput}>
-          <i className="bi bi-cloud-upload" style={styles.uploadIcon}></i> Upload Images
-        </button>
-        <input
-          type="file"
-          ref={fileInputRef}
-          accept="image/*"
-          onChange={handleImageUpload}
-          style={{ display: 'none' }}
-          multiple
-        />
-        <p style={styles.uploadHint}>Share your moments with our community (JPG, PNG - max 5MB each)</p>
-      </div>
-      
       <div style={styles.galleryGrid}>
-        {[...galleryImages, ...images].map((img, index) => (
+        {galleryImages.map((img, index) => (
           <div key={index} style={styles.galleryItem}>
             <img 
               src={img} 
@@ -73,7 +75,7 @@ const Gallery = () => {
             />
             <div style={styles.imageOverlay}>
               <span style={styles.imageTitle}>
-                {index < imageTitles.length ? imageTitles[index] : `New Image ${index - imageTitles.length + 1}`}
+                {imageTitles[index] || `Community Activity ${index + 1}`}
               </span>
             </div>
           </div>
@@ -120,41 +122,6 @@ const styles = {
     maxWidth: '700px',
     margin: '0 auto',
     lineHeight: '1.6',
-  },
-  uploadContainer: {
-    backgroundColor: 'white',
-    borderRadius: '15px',
-    padding: '25px',
-    boxShadow: '0 5px 20px rgba(0,0,0,0.05)',
-    margin: '30px auto',
-    textAlign: 'center',
-    maxWidth: '800px',
-  },
-  uploadButton: {
-    backgroundColor: '#1a936f',
-    color: 'white',
-    border: 'none',
-    padding: '14px 35px',
-    fontSize: '1.1rem',
-    fontWeight: '600',
-    borderRadius: '50px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    marginBottom: '15px',
-    boxShadow: '0 4px 15px rgba(26, 147, 111, 0.3)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 auto 15px',
-  },
-  uploadIcon: {
-    marginRight: '10px',
-    fontSize: '1.3rem',
-  },
-  uploadHint: {
-    color: '#6c757d',
-    fontSize: '0.95rem',
-    margin: '0',
   },
   galleryGrid: {
     display: 'grid',
@@ -228,12 +195,6 @@ const addHoverStyles = `
   
   .gallery-item:hover img {
     transform: scale(1.05);
-  }
-  
-  .upload-button:hover {
-    background: #16825f;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(26, 147, 111, 0.4);
   }
 `;
 

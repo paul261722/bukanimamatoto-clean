@@ -366,8 +366,8 @@ const Navigation = () => {
                 <div className="d-flex align-items-center">
                   <i className="bi bi-envelope me-3 text-primary"></i>
                   <div>
-                    <h6>Email Us</h6>
-                    <p>contact@bukanimamatoto@gmail.com</p>
+                    <h6>Email Us </h6>
+                    <p>bukanimamatoto@gmail.com</p>
                   </div>
                 </div>
               </div>

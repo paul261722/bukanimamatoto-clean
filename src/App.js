@@ -1,26 +1,49 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar          from './Components/Navbar';
+import { CartProvider } from './context/CartProvider'; // Fixed path
+import Navbar from './Components/Navbar';
+import CartIcon from './Components/CartIcon';
 import CarouselSection from './Components/CarouselSection';
-import Home            from './Components/Home';
-import About           from './Components/About';
-import Footer          from './Components/Footer';
-import Gallery         from './Components/Gallery'; // ✅ Added import
+import Home from './Components/Home';
+import Footer from './Components/Footer';
+import Gallery from './Components/Gallery';
+import mpesalogo from './assets/mpesalogo.png'; // Adjust the path based on your component's location
+
+import Makepayments from './Components/Makepayments';
+import ShopPage from './Components/ShopPage';
+import About from './Components/About';
+import JoinPage from './Components/JoinPage';
+import CartPage from './Components/CartPage';
+import CheckoutPage from './Components/CheckOutPage'; // Fixed import
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
+const HomePage = () => (
+  <div>
+    <CarouselSection />
+    <Home />
+  </div>
+);
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      {/* Optional: show on every page */}
-      <Routes>
-        <Route path="/"        element={<Home />} />
-        <Route path="/about"   element={<About />} />
-        <Route path="/gallery" element={<Gallery />} /> {/* ✅ Added route */}
-      </Routes>
-      <Footer />
-    </Router>
+    <CartProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/makepayment" element={<Makepayments />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </CartProvider>
   );
 }
 

@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import fish1 from '../assets/fish1.jpg';
 import fish2 from '../assets/fish2.jpeg';
 import fish3 from '../assets/fish3.jpeg';
 
 const CarouselSection = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (path) => {
+    navigate(path);
+  };
+
   useEffect(() => {
-    // Cleanup function for animation classes
     return () => {
       document.querySelectorAll('.carousel-item').forEach(item => {
         item.classList.remove('active');
@@ -255,7 +261,12 @@ const CarouselSection = () => {
             <div className="caption-content">
               <h3>Fresh Catch Daily</h3>
               <p>Locally sourced, community supported</p>
-              <button className="cta-button">Shop Now</button>
+              <button 
+                className="cta-button"
+                onClick={() => handleButtonClick('/shop')}
+              >
+                Shop Now
+              </button>
             </div>
           </Carousel.Caption>
         </Carousel.Item>
@@ -269,7 +280,12 @@ const CarouselSection = () => {
             <div className="caption-content">
               <h3>Empowering Women</h3>
               <p>Supporting livelihoods through fishing</p>
-              <button className="cta-button">Learn More</button>
+              <button 
+                className="cta-button"
+                onClick={() => handleButtonClick('/about')}
+              >
+                Learn More
+              </button>
             </div>
           </Carousel.Caption>
         </Carousel.Item>
@@ -283,7 +299,12 @@ const CarouselSection = () => {
             <div className="caption-content">
               <h3>Community Driven</h3>
               <p>By the women, for the community</p>
-              <button className="cta-button">Join Us</button>
+              <button 
+                className="cta-button"
+                onClick={() => handleButtonClick('/join')}
+              >
+                Join Us
+              </button>
             </div>
           </Carousel.Caption>
         </Carousel.Item>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Accordion } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { 
   FaBullseye, FaEye, FaChartLine, FaUsers, 
-  FaLeaf, FaHandshake, FaGraduationCap, 
-  FaUsersCog, FaMoneyBillWave, FaShoppingCart
+  FaLeaf, FaGraduationCap, FaMoneyBillWave, FaShoppingCart,
+  FaWater, FaFish, FaHandHoldingWater, FaLightbulb,
+  FaBook, FaLaptop, FaHandHoldingUsd, FaChartPie, FaShieldAlt
 } from 'react-icons/fa';
 
 const About = () => {
@@ -21,10 +22,19 @@ const About = () => {
         <Container>
           <Row className="justify-content-center">
             <Col lg={8} className="text-center">
-              <h1 className="hero-title">Empowering Women Through Sustainable Aquaculture</h1>
-              <p className="hero-subtitle">
-                Transforming lives along Lake Victoria with innovative fish farming and financial solutions
-              </p>
+              <div className="hero-content">
+                <div className="water-reflection"></div>
+                <h1 className="hero-title">Empowering Women Through Sustainable Aquaculture</h1>
+                <p className="hero-subtitle">
+                  Transforming lives along Lake Victoria with innovative fish farming and financial solutions
+                </p>
+                <div className="hero-icons">
+                  <FaFish className="icon" />
+                  <FaWater className="icon" />
+                  <FaHandHoldingWater className="icon" />
+                  <FaLightbulb className="icon" />
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>
@@ -37,7 +47,7 @@ const About = () => {
           
           <Row className="g-4">
             <Col md={6}>
-              <Card className="mission-card h-100">
+              <Card className="mission-card glass-card h-100">
                 <div className="card-icon">
                   <FaBullseye />
                 </div>
@@ -51,7 +61,7 @@ const About = () => {
             </Col>
             
             <Col md={6}>
-              <Card className="vision-card h-100">
+              <Card className="vision-card glass-card h-100">
                 <div className="card-icon">
                   <FaEye />
                 </div>
@@ -69,12 +79,13 @@ const About = () => {
 
       {/* Objectives */}
       <section className="py-5 objectives-section">
+        <div className="wave-divider"></div>
         <Container>
           <h2 className="text-center mb-5 section-title">Our Key Objectives</h2>
           
           <Row className="g-4">
             <Col lg={3} md={6}>
-              <div className={`objective-card ${activeAccordion === '0' ? 'active' : ''}`} onClick={() => toggleAccordion('0')}>
+              <div className={`objective-card glass-card ${activeAccordion === '0' ? 'active' : ''}`} onClick={() => toggleAccordion('0')}>
                 <div className="objective-icon">
                   <FaChartLine />
                 </div>
@@ -86,7 +97,7 @@ const About = () => {
             </Col>
             
             <Col lg={3} md={6}>
-              <div className={`objective-card ${activeAccordion === '1' ? 'active' : ''}`} onClick={() => toggleAccordion('1')}>
+              <div className={`objective-card glass-card ${activeAccordion === '1' ? 'active' : ''}`} onClick={() => toggleAccordion('1')}>
                 <div className="objective-icon">
                   <FaMoneyBillWave />
                 </div>
@@ -98,7 +109,7 @@ const About = () => {
             </Col>
             
             <Col lg={3} md={6}>
-              <div className={`objective-card ${activeAccordion === '2' ? 'active' : ''}`} onClick={() => toggleAccordion('2')}>
+              <div className={`objective-card glass-card ${activeAccordion === '2' ? 'active' : ''}`} onClick={() => toggleAccordion('2')}>
                 <div className="objective-icon">
                   <FaGraduationCap />
                 </div>
@@ -110,7 +121,7 @@ const About = () => {
             </Col>
             
             <Col lg={3} md={6}>
-              <div className={`objective-card ${activeAccordion === '3' ? 'active' : ''}`} onClick={() => toggleAccordion('3')}>
+              <div className={`objective-card glass-card ${activeAccordion === '3' ? 'active' : ''}`} onClick={() => toggleAccordion('3')}>
                 <div className="objective-icon">
                   <FaLeaf />
                 </div>
@@ -131,7 +142,7 @@ const About = () => {
           
           <Row className="g-4">
             <Col md={4}>
-              <Card className="activity-card shadow-sm h-100">
+              <Card className="activity-card glass-card shadow-sm h-100">
                 <div className="activity-icon">
                   <FaGraduationCap />
                 </div>
@@ -145,7 +156,7 @@ const About = () => {
             </Col>
             
             <Col md={4}>
-              <Card className="activity-card shadow-sm h-100">
+              <Card className="activity-card glass-card shadow-sm h-100">
                 <div className="activity-icon">
                   <FaUsers />
                 </div>
@@ -159,7 +170,7 @@ const About = () => {
             </Col>
             
             <Col md={4}>
-              <Card className="activity-card shadow-sm h-100">
+              <Card className="activity-card glass-card shadow-sm h-100">
                 <div className="activity-icon">
                   <FaShoppingCart />
                 </div>
@@ -177,28 +188,29 @@ const About = () => {
 
       {/* Stats Section */}
       <section className="py-5 stats-section">
+        <div className="wave-divider-bottom"></div>
         <Container>
           <Row className="g-4 text-center">
             <Col md={3} sm={6}>
-              <div className="stat-card">
+              <div className="stat-card glass-card">
                 <div className="stat-value">250+</div>
                 <div className="stat-label">Women Empowered</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
-              <div className="stat-card">
+              <div className="stat-card glass-card">
                 <div className="stat-value">15</div>
                 <div className="stat-label">Farming Groups</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
-              <div className="stat-card">
+              <div className="stat-card glass-card">
                 <div className="stat-value">50K+</div>
                 <div className="stat-label">Fish Harvested</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
-              <div className="stat-card">
+              <div className="stat-card glass-card">
                 <div className="stat-value">100%</div>
                 <div className="stat-label">Sustainable Practices</div>
               </div>
@@ -207,19 +219,153 @@ const About = () => {
         </Container>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-5 cta-section">
+      {/* Capacity Building Section */}
+      <section className="py-5 capacity-section">
         <Container>
-          <Row className="justify-content-center">
-            <Col lg={8} className="text-center">
-              <h2 className="cta-title">Join Our Movement</h2>
-              <p className="cta-text">
-                Support our mission to empower women and transform communities through sustainable aquaculture.
-              </p>
-              <div className="cta-buttons">
-                <button className="btn btn-primary">Donate Now</button>
-                <button className="btn btn-outline-light">Partner With Us</button>
+          <h2 className="text-center mb-5 section-title">Capacity Building Programs</h2>
+          
+          <Row className="justify-content-center mb-5">
+            <Col lg={10}>
+              <div className="capacity-intro glass-card p-4 rounded-4 mb-5">
+                <p className="text-center fs-5">
+                  Our comprehensive training programs equip women with the knowledge and skills needed to excel in aquaculture and business management.
+                </p>
               </div>
+            </Col>
+          </Row>
+          
+          <Row className="g-4">
+            <Col md={4}>
+              <Card className="program-card glass-card h-100">
+                <div className="program-icon">
+                  <FaBook />
+                </div>
+                <Card.Body>
+                  <Card.Title>Technical Aquaculture Training</Card.Title>
+                  <ul className="program-list">
+                    <li>Fish cage construction and maintenance</li>
+                    <li>Fish feeding and nutrition management</li>
+                    <li>Disease prevention and control</li>
+                    <li>Water quality monitoring</li>
+                    <li>Harvesting and post-harvest techniques</li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+            <Col md={4}>
+              <Card className="program-card glass-card h-100">
+                <div className="program-icon">
+                  <FaLaptop />
+                </div>
+                <Card.Body>
+                  <Card.Title>Business & Financial Literacy</Card.Title>
+                  <ul className="program-list">
+                    <li>Record keeping and financial management</li>
+                    <li>Business planning and strategy</li>
+                    <li>Market analysis and access</li>
+                    <li>Value addition and product development</li>
+                    <li>Digital literacy for business</li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+            <Col md={4}>
+              <Card className="program-card glass-card h-100">
+                <div className="program-icon">
+                  <FaShieldAlt />
+                </div>
+                <Card.Body>
+                  <Card.Title>Leadership & Sustainability</Card.Title>
+                  <ul className="program-list">
+                    <li>Leadership and group dynamics</li>
+                    <li>Environmental conservation practices</li>
+                    <li>Climate change adaptation strategies</li>
+                    <li>Resource management</li>
+                    <li>Community engagement</li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* Financial Inclusion Section */}
+      <section className="py-5 finance-section">
+        <Container>
+          <h2 className="text-center mb-5 section-title">Financial Inclusion Initiatives</h2>
+          
+          <Row className="justify-content-center mb-5">
+            <Col lg={10}>
+              <div className="finance-intro glass-card p-4 rounded-4 mb-5">
+                <p className="text-center fs-5">
+                  We provide financial tools and services to help women build sustainable livelihoods and achieve economic independence.
+                </p>
+              </div>
+            </Col>
+          </Row>
+          
+          <Row className="g-4">
+            <Col lg={4}>
+              <Card className="finance-card glass-card h-100">
+                <div className="finance-icon">
+                  <FaHandHoldingUsd />
+                </div>
+                <Card.Body>
+                  <Card.Title>Table Banking System</Card.Title>
+                  <Card.Text>
+                    Our innovative table banking model enables women to pool resources and access small loans for:
+                  </Card.Text>
+                  <ul className="finance-list">
+                    <li>Fish farming inputs and equipment</li>
+                    <li>Business expansion</li>
+                    <li>Emergency needs</li>
+                    <li>Education and healthcare</li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+            <Col lg={4}>
+              <Card className="finance-card glass-card h-100">
+                <div className="finance-icon">
+                  <FaChartPie />
+                </div>
+                <Card.Body>
+                  <Card.Title>Microfinance Partnerships</Card.Title>
+                  <Card.Text>
+                    We connect women with microfinance institutions for:
+                  </Card.Text>
+                  <ul className="finance-list">
+                    <li>Low-interest startup loans</li>
+                    <li>Asset financing for cage equipment</li>
+                    <li>Savings programs with competitive returns</li>
+                    <li>Insurance products for aquaculture</li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+            <Col lg={4}>
+              <Card className="finance-card glass-card h-100">
+                <div className="finance-icon">
+                  <FaMoneyBillWave />
+                </div>
+                <Card.Body>
+                  <Card.Title>Income Diversification</Card.Title>
+                  <Card.Text>
+                    We support women in developing complementary income streams:
+                  </Card.Text>
+                  <ul className="finance-list">
+                    <li>Fish processing and value addition</li>
+                    <li>Aquaponics vegetable farming</li>
+                    <li>Fish feed production businesses</li>
+                    <li>Eco-tourism initiatives</li>
+                  </ul>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         </Container>
@@ -228,17 +374,22 @@ const About = () => {
       <style jsx>{`
         .about-page {
           overflow-x: hidden;
+          background: linear-gradient(135deg, #0a1a2a 0%, #0a3d62 100%);
+          color: #f0f8ff;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         /* Hero Section */
         .about-hero {
           position: relative;
-          background: linear-gradient(rgba(0, 50, 80, 0.7), url('https://images.unsplash.com/photo-1593111774240-d529f12e5c4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+          background: linear-gradient(rgba(0, 20, 40, 0.85), rgba(0, 20, 40, 0.85)), 
+                      url('https://images.unsplash.com/photo-1593111774240-d529f12e5c4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
           background-size: cover;
           background-position: center;
-          padding: 120px 0 100px;
-          color: white;
+          background-attachment: fixed;
+          padding: 150px 0 120px;
           text-align: center;
+          overflow: hidden;
         }
         
         .hero-overlay {
@@ -247,33 +398,100 @@ const About = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(135deg, rgba(0, 90, 120, 0.8) 0%, rgba(0, 50, 80, 0.9) 100%);
+          background: radial-gradient(circle at center, rgba(10, 61, 98, 0.7) 0%, rgba(5, 30, 50, 0.9) 100%);
+          z-index: 1;
+        }
+        
+        .hero-content {
+          position: relative;
+          z-index: 2;
+          padding: 40px;
+          border-radius: 20px;
+          background: rgba(5, 30, 50, 0.3);
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(100, 200, 255, 0.1);
         }
         
         .hero-title {
-          font-size: 2.8rem;
-          font-weight: 700;
-          margin-bottom: 20px;
+          font-size: 3.2rem;
+          font-weight: 800;
+          margin-bottom: 25px;
           position: relative;
           z-index: 2;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+          background: linear-gradient(90deg, #88d498, #64c8fa);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          line-height: 1.2;
         }
         
         .hero-subtitle {
-          font-size: 1.4rem;
+          font-size: 1.5rem;
           max-width: 700px;
-          margin: 0 auto;
+          margin: 0 auto 30px;
           position: relative;
           z-index: 2;
+          color: #e0f7ff;
+          font-weight: 300;
+        }
+        
+        .hero-icons {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          margin-top: 30px;
+        }
+        
+        .hero-icons .icon {
+          font-size: 2.5rem;
+          color: #64c8fa;
+          transition: all 0.3s ease;
+          animation: float 3s ease-in-out infinite;
+        }
+        
+        .hero-icons .icon:nth-child(1) { animation-delay: 0s; }
+        .hero-icons .icon:nth-child(2) { animation-delay: 0.5s; }
+        .hero-icons .icon:nth-child(3) { animation-delay: 1s; }
+        .hero-icons .icon:nth-child(4) { animation-delay: 1.5s; }
+        
+        .water-reflection {
+          position: absolute;
+          bottom: -10px;
+          left: 0;
+          width: 100%;
+          height: 20px;
+          background: linear-gradient(to bottom, rgba(100, 200, 255, 0.1), transparent);
+          border-radius: 50%;
+          filter: blur(5px);
+          z-index: -1;
+        }
+        
+        /* Glass Card Effect */
+        .glass-card {
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(100, 200, 255, 0.1);
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 8px 32px rgba(0, 20, 40, 0.3);
+          transition: all 0.4s ease;
+          color: #e0f7ff;
+        }
+        
+        .glass-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 12px 40px rgba(0, 100, 200, 0.4);
+          border: 1px solid rgba(100, 200, 255, 0.3);
         }
         
         /* Section Titles */
         .section-title {
-          font-size: 2.2rem;
-          font-weight: 700;
+          font-size: 2.6rem;
+          font-weight: 800;
           position: relative;
-          padding-bottom: 15px;
-          color: #0a3d62;
+          padding-bottom: 20px;
+          color: #88d498;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
         
         .section-title::after {
@@ -282,85 +500,215 @@ const About = () => {
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          width: 80px;
-          height: 4px;
-          background: linear-gradient(90deg, #1a936f, #88d498);
-          border-radius: 2px;
+          width: 100px;
+          height: 5px;
+          background: linear-gradient(90deg, #1a936f, #64c8fa);
+          border-radius: 3px;
+          box-shadow: 0 2px 10px rgba(26, 147, 111, 0.5);
         }
         
         /* Mission & Vision Cards */
-        .mission-card, .vision-card {
-          border: none;
-          border-radius: 15px;
-          overflow: hidden;
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          position: relative;
-          background: white;
+        .mission-card .card-icon {
+          background: linear-gradient(135deg, #1a936f, #88d498);
+          box-shadow: 0 5px 15px rgba(26, 147, 111, 0.5);
         }
         
-        .mission-card:hover, .vision-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        .vision-card .card-icon {
+          background: linear-gradient(135deg, #0a3d62, #64c8fa);
+          box-shadow: 0 5px 15px rgba(10, 61, 98, 0.5);
         }
         
         .card-icon {
+          width: 90px;
+          height: 90px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          margin: -45px auto 25px;
+          font-size: 2.5rem;
+          color: white;
+          position: relative;
+          z-index: 2;
+        }
+        
+        .card-title {
+          font-size: 1.8rem;
+          font-weight: 700;
+          text-align: center;
+          margin-bottom: 25px;
+          color: #64c8fa;
+        }
+        
+        .card-text {
+          font-size: 1.1rem;
+          line-height: 1.7;
+          color: #ccefff;
+        }
+        
+        /* Objectives Section */
+        .objectives-section {
+          position: relative;
+          padding: 100px 0;
+          background: linear-gradient(to bottom, #0a1a2a, #0a3d62);
+          overflow: hidden;
+        }
+        
+        .wave-divider {
+          position: absolute;
+          top: -1px;
+          left: 0;
+          width: 100%;
+          height: 100px;
+          background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230a1a2a' fill-opacity='1' d='M0,128L48,117.3C96,107,192,85,288,96C384,107,480,149,576,149.3C672,149,768,107,864,96C960,85,1056,107,1152,117.3C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+          background-size: cover;
+          background-position: center;
+        }
+        
+        .objective-card {
+          padding: 30px 25px;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.4s ease;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .objective-card:hover, .objective-card.active {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 50, 100, 0.4);
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(100, 200, 255, 0.2);
+        }
+        
+        .objective-icon {
           width: 80px;
           height: 80px;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          margin: -40px auto 20px;
+          margin: 0 auto 25px;
           font-size: 2rem;
-          position: relative;
-          z-index: 2;
-        }
-        
-        .mission-card .card-icon {
-          background: linear-gradient(135deg, #1a936f, #88d498);
+          background: linear-gradient(135deg, #1a936f, #64c8fa);
           color: white;
           box-shadow: 0 5px 15px rgba(26, 147, 111, 0.4);
         }
         
-        .vision-card .card-icon {
-          background: linear-gradient(135deg, #0a3d62, #1e88e5);
+        .objective-title {
+          font-weight: 700;
+          margin-bottom: 20px;
+          color: #88d498;
+          font-size: 1.4rem;
+        }
+        
+        .objective-content {
+          color: #ccefff;
+          font-size: 1.05rem;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.5s ease;
+          line-height: 1.6;
+        }
+        
+        .objective-content.show {
+          max-height: 200px;
+        }
+        
+        /* Activities Section */
+        .activities-section {
+          padding: 100px 0;
+          background: linear-gradient(to bottom, #0a3d62, #0a1a2a);
+        }
+        
+        .activity-card {
+          padding: 40px 25px 25px;
+        }
+        
+        .activity-icon {
+          width: 80px;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          margin: -40px auto 25px;
+          font-size: 2rem;
+          background: linear-gradient(135deg, #0a3d62, #64c8fa);
           color: white;
           box-shadow: 0 5px 15px rgba(10, 61, 98, 0.4);
         }
         
-        .card-title {
+        .activity-card .card-title {
+          color: #88d498;
           font-size: 1.6rem;
-          font-weight: 700;
-          text-align: center;
           margin-bottom: 20px;
-          color: #0a3d62;
         }
         
-        /* Objectives Section */
-        .objectives-section {
-          background-color: #f8f9fa;
+        /* Stats Section */
+        .stats-section {
+          position: relative;
+          padding: 100px 0;
+          background: linear-gradient(to bottom, #0a1a2a, #0a3d62);
         }
         
-        .objective-card {
-          background: white;
+        .wave-divider-bottom {
+          position: absolute;
+          top: -1px;
+          left: 0;
+          width: 100%;
+          height: 100px;
+          background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230a3d62' fill-opacity='1' d='M0,128L48,117.3C96,107,192,85,288,96C384,107,480,149,576,149.3C672,149,768,107,864,96C960,85,1056,107,1152,117.3C1248,128,1344,128,1392,128L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+          background-size: cover;
+          background-position: center;
+        }
+        
+        .stat-card {
+          padding: 40px 20px;
           border-radius: 15px;
-          padding: 25px 20px;
+          transition: transform 0.4s ease;
+        }
+        
+        .stat-card:hover {
+          transform: translateY(-10px) scale(1.03);
+          background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .stat-value {
+          font-size: 3.5rem;
+          font-weight: 800;
+          margin-bottom: 15px;
+          background: linear-gradient(90deg, #88d498, #64c8fa);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+          font-size: 1.3rem;
+          color: #ccefff;
+          font-weight: 300;
+        }
+        
+        /* Capacity Building Section */
+        .capacity-section {
+          padding: 100px 0;
+          background: linear-gradient(to bottom, #0a3d62, #0a1a2a);
+        }
+        
+        .capacity-intro {
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(100, 200, 255, 0.2);
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        
+        .program-card {
+          padding: 30px 20px;
           text-align: center;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-          cursor: pointer;
-          transition: all 0.3s ease;
-          height: 100%;
-          border: 2px solid transparent;
         }
         
-        .objective-card:hover, .objective-card.active {
-          border-color: #1a936f;
-          transform: translateY(-5px);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .objective-icon {
+        .program-icon {
           width: 70px;
           height: 70px;
           display: flex;
@@ -369,159 +717,114 @@ const About = () => {
           border-radius: 50%;
           margin: 0 auto 20px;
           font-size: 1.8rem;
-          background: linear-gradient(135deg, #1a936f, #88d498);
+          background: linear-gradient(135deg, #1a936f, #64c8fa);
           color: white;
+          box-shadow: 0 5px 15px rgba(26, 147, 111, 0.4);
         }
         
-        .objective-title {
-          font-weight: 700;
-          margin-bottom: 15px;
-          color: #0a3d62;
+        .program-card .card-title {
+          font-size: 1.5rem;
+          margin-bottom: 20px;
+          color: #88d498;
         }
         
-        .objective-content {
-          color: #555;
-          font-size: 0.95rem;
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.4s ease;
+        .program-list {
+          text-align: left;
+          padding-left: 20px;
+          margin-bottom: 0;
         }
         
-        .objective-content.show {
-          max-height: 200px;
+        .program-list li {
+          margin-bottom: 10px;
+          color: #ccefff;
+          position: relative;
         }
         
-        /* Activities Section */
-        .activity-card {
-          border: none;
-          border-radius: 15px;
-          overflow: hidden;
-          transition: transform 0.3s ease;
-          background: white;
+        .program-list li:before {
+          content: '✓';
+          color: #88d498;
+          font-weight: bold;
+          margin-right: 10px;
         }
         
-        .activity-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+        /* Financial Inclusion Section */
+        .finance-section {
+          padding: 100px 0;
+          background: linear-gradient(to bottom, #0a1a2a, #0a3d62);
         }
         
-        .activity-icon {
+        .finance-intro {
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(100, 200, 255, 0.2);
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        
+        .finance-card {
+          padding: 30px 20px;
+        }
+        
+        .finance-icon {
           width: 70px;
           height: 70px;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          margin: -35px auto 20px;
+          margin: 0 auto 20px;
           font-size: 1.8rem;
-          background: linear-gradient(135deg, #0a3d62, #1e88e5);
+          background: linear-gradient(135deg, #0a3d62, #64c8fa);
           color: white;
-          box-shadow: 0 5px 15px rgba(10, 61, 98, 0.3);
+          box-shadow: 0 5px 15px rgba(10, 61, 98, 0.4);
         }
         
-        /* Stats Section */
-        .stats-section {
-          background: linear-gradient(135deg, #0a3d62, #1a936f);
-          color: white;
-        }
-        
-        .stat-card {
-          padding: 30px 20px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 15px;
-          backdrop-filter: blur(5px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-          transform: translateY(-5px);
-          background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .stat-value {
-          font-size: 2.5rem;
-          font-weight: 700;
-          margin-bottom: 10px;
-        }
-        
-        .stat-label {
-          font-size: 1.1rem;
-          opacity: 0.9;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-          background: linear-gradient(rgba(0, 50, 80, 0.8), rgba(0, 50, 80, 0.8)), url('https://images.unsplash.com/photo-1516724562728-afc824a36e84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80');
-          background-size: cover;
-          background-position: center;
-          color: white;
-          text-align: center;
-          padding: 80px 0;
-        }
-        
-        .cta-title {
-          font-size: 2.5rem;
-          font-weight: 700;
+        .finance-card .card-title {
+          font-size: 1.5rem;
           margin-bottom: 20px;
+          color: #64c8fa;
         }
         
-        .cta-text {
-          font-size: 1.2rem;
-          max-width: 600px;
-          margin: 0 auto 30px;
-          opacity: 0.9;
+        .finance-list {
+          padding-left: 20px;
         }
         
-        .cta-buttons {
-          display: flex;
-          justify-content: center;
-          gap: 20px;
-          flex-wrap: wrap;
+        .finance-list li {
+          margin-bottom: 10px;
+          color: #ccefff;
+          position: relative;
         }
         
-        .btn-primary {
-          background: linear-gradient(135deg, #1a936f, #88d498);
-          border: none;
-          padding: 12px 30px;
-          font-weight: 600;
-          border-radius: 50px;
-          transition: all 0.3s ease;
+        .finance-list li:before {
+          content: '•';
+          color: #64c8fa;
+          font-weight: bold;
+          margin-right: 10px;
         }
         
-        .btn-primary:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 20px rgba(26, 147, 111, 0.4);
-        }
-        
-        .btn-outline-light {
-          border: 2px solid white;
-          padding: 10px 28px;
-          font-weight: 600;
-          border-radius: 50px;
-          transition: all 0.3s ease;
-        }
-        
-        .btn-outline-light:hover {
-          background: white;
-          color: #0a3d62;
-          transform: translateY(-3px);
+        /* Animations */
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
         }
         
         /* Responsive styles */
         @media (max-width: 992px) {
           .hero-title {
-            font-size: 2.3rem;
+            font-size: 2.6rem;
           }
           
           .section-title {
-            font-size: 1.9rem;
+            font-size: 2.2rem;
+          }
+          
+          .stat-value {
+            font-size: 3rem;
           }
         }
         
         @media (max-width: 768px) {
           .hero-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
           }
           
           .hero-subtitle {
@@ -529,30 +832,29 @@ const About = () => {
           }
           
           .section-title {
-            font-size: 1.7rem;
+            font-size: 1.9rem;
           }
           
           .card-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+          }
+          
+          .stat-value {
+            font-size: 2.5rem;
           }
         }
         
         @media (max-width: 576px) {
           .hero-title {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
           }
           
-          .cta-title {
-            font-size: 2rem;
+          .hero-content {
+            padding: 20px;
           }
           
-          .cta-buttons {
-            flex-direction: column;
-            gap: 10px;
-          }
-          
-          .cta-buttons .btn {
-            width: 100%;
+          .section-title {
+            font-size: 1.7rem;
           }
         }
       `}</style>
