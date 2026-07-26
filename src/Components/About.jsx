@@ -4,7 +4,8 @@ import {
   FaBullseye, FaEye, FaChartLine, FaUsers, 
   FaLeaf, FaGraduationCap, FaMoneyBillWave, FaShoppingCart,
   FaWater, FaFish, FaHandHoldingWater, FaLightbulb,
-  FaBook, FaLaptop, FaHandHoldingUsd, FaChartPie, FaShieldAlt
+  FaBook, FaLaptop, FaHandHoldingUsd, FaChartPie, FaShieldAlt,
+  FaRocket, FaHandsHelping
 } from 'react-icons/fa';
 
 const About = () => {
@@ -24,9 +25,12 @@ const About = () => {
             <Col lg={8} className="text-center">
               <div className="hero-content">
                 <div className="water-reflection"></div>
-                <h1 className="hero-title">Empowering Women Through Sustainable Aquaculture</h1>
+                <h1 className="hero-title">Mama Toto Women Group</h1>
                 <p className="hero-subtitle">
-                  Transforming lives along Lake Victoria with innovative fish farming and financial solutions
+                  Empowering women through sustainable fish farming and the blue economy
+                </p>
+                <p className="hero-description">
+                  A comprehensive initiative for women in fish cage farming and aquaculture technology
                 </p>
                 <div className="hero-icons">
                   <FaFish className="icon" />
@@ -68,8 +72,51 @@ const About = () => {
                 <Card.Body>
                   <Card.Title className="card-title">Our Vision</Card.Title>
                   <Card.Text>
-                    A thriving community of resilient women leading in sustainable aquaculture and blue economy initiatives, ensuring food security, poverty reduction, and gender equality along Lake Victoria.
+                    A thriving community of resilient women leading in sustainable aquaculture and blue economy initiatives, ensuring food security, poverty reduction, and gender equality.
                   </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* The Problem & Our Solution */}
+      <section className="py-5 problem-solution-section">
+        <Container>
+          <h2 className="text-center mb-5 section-title">Our Approach</h2>
+          
+          <Row className="g-4">
+            <Col md={6}>
+              <Card className="problem-card glass-card h-100">
+                <div className="card-icon problem-icon">
+                  <FaShieldAlt />
+                </div>
+                <Card.Body>
+                  <Card.Title className="card-title">The Problem</Card.Title>
+                  <ul className="problem-list">
+                    <li>Limited access for women to participate in sustainable fisheries and aquaculture</li>
+                    <li>Lack of access to modern aquaculture technology and training</li>
+                    <li>Insufficient market access for women-led fish farming businesses</li>
+                    <li>Environmental challenges affecting traditional fishing communities</li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+            <Col md={6}>
+              <Card className="solution-card glass-card h-100">
+                <div className="card-icon solution-icon">
+                  <FaLightbulb />
+                </div>
+                <Card.Body>
+                  <Card.Title className="card-title">Our Solution</Card.Title>
+                  <ul className="solution-list">
+                    <li>Equip women with modern fish cage farming techniques and aquaculture technology</li>
+                    <li>Provide training on sustainable fish farming practices</li>
+                    <li>Facilitate access to markets and microfinance for women entrepreneurs</li>
+                    <li>Promote women's active participation in the blue economy</li>
+                  </ul>
                 </Card.Body>
               </Card>
             </Col>
@@ -147,9 +194,9 @@ const About = () => {
                   <FaGraduationCap />
                 </div>
                 <Card.Body>
-                  <Card.Title>Training Workshops</Card.Title>
+                  <Card.Title>Training & Capacity Building</Card.Title>
                   <Card.Text>
-                    Conduct training on sustainable fish cage farming, environmental conservation, and financial management.
+                    Conduct training on sustainable fish cage farming, environmental conservation, and financial management for women entrepreneurs.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -161,9 +208,9 @@ const About = () => {
                   <FaUsers />
                 </div>
                 <Card.Body>
-                  <Card.Title>Group Formation</Card.Title>
+                  <Card.Title>Group Formation & Support</Card.Title>
                   <Card.Text>
-                    Form and support women-led fish farming groups with necessary equipment and inputs.
+                    Form and support women-led fish farming groups with necessary equipment, inputs, and aquaculture technology tools.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -175,9 +222,9 @@ const About = () => {
                   <FaShoppingCart />
                 </div>
                 <Card.Body>
-                  <Card.Title>Market & Finance</Card.Title>
+                  <Card.Title>Market & Financial Access</Card.Title>
                   <Card.Text>
-                    Establish table banking schemes, microfinance support, and facilitate market access with value addition.
+                    Establish table banking schemes, microfinance support, and facilitate market linkages with value addition for women entrepreneurs.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -193,26 +240,78 @@ const About = () => {
           <Row className="g-4 text-center">
             <Col md={3} sm={6}>
               <div className="stat-card glass-card">
-                <div className="stat-value">250+</div>
-                <div className="stat-label">Women Empowered</div>
+                <div className="stat-value">50+</div>
+                <div className="stat-label">Women Trained</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card glass-card">
-                <div className="stat-value">15</div>
-                <div className="stat-label">Farming Groups</div>
+                <div className="stat-value">5</div>
+                <div className="stat-label">Fish Cages Installed</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card glass-card">
-                <div className="stat-value">50K+</div>
-                <div className="stat-label">Fish Harvested</div>
+                <div className="stat-value">2M+</div>
+                <div className="stat-label">Revenue Generated (KES)</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card glass-card">
-                <div className="stat-value">100%</div>
-                <div className="stat-label">Sustainable Practices</div>
+                <div className="stat-value">500+</div>
+                <div className="stat-label">Target Women Beneficiaries</div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* Funding & Future Plans */}
+      <section className="py-5 funding-section">
+        <Container>
+          <h2 className="text-center mb-5 section-title">Funding & Future Plans</h2>
+          
+          <Row className="justify-content-center">
+            <Col lg={10}>
+              <div className="funding-card glass-card p-5">
+                <div className="funding-icon">
+                  <FaRocket />
+                </div>
+                <h3 className="funding-amount">Seeking KES 5,000,000</h3>
+                <p className="funding-description">
+                  To expand training, purchase aquaculture equipment, and scale market access for women-led fish farming enterprises.
+                </p>
+                <Row className="g-4 mt-3">
+                  <Col md={4}>
+                    <div className="funding-use">
+                      <div className="use-icon"><FaGraduationCap /></div>
+                      <h5>Expand Training</h5>
+                      <p>Reach more women with advanced aquaculture and business skills.</p>
+                    </div>
+                  </Col>
+                  <Col md={4}>
+                    <div className="funding-use">
+                      <div className="use-icon"><FaLaptop /></div>
+                      <h5>Advanced Technology</h5>
+                      <p>Introduce modern aquaculture equipment and digital tools.</p>
+                    </div>
+                  </Col>
+                  <Col md={4}>
+                    <div className="funding-use">
+                      <div className="use-icon"><FaHandsHelping /></div>
+                      <h5>Market & Microfinance</h5>
+                      <p>Strengthen market linkages and microfinance services for women.</p>
+                    </div>
+                  </Col>
+                </Row>
+                <div className="funding-outcomes mt-4">
+                  <h5>Projected Outcomes:</h5>
+                  <ul>
+                    <li>Increased number of women-led fish farms</li>
+                    <li>Higher income and improved livelihoods</li>
+                    <li>Greater community resilience and food security</li>
+                  </ul>
+                </div>
               </div>
             </Col>
           </Row>
@@ -371,6 +470,23 @@ const About = () => {
         </Container>
       </section>
 
+      {/* Call to Action */}
+      <section className="py-5 cta-section">
+        <Container>
+          <div className="cta-card glass-card p-5 text-center">
+            <h2 className="cta-title">Join Us in Empowering Women</h2>
+            <p className="cta-text">
+              Support our mission to build resilient women-led aquaculture enterprises and promote a sustainable and inclusive blue economy.
+            </p>
+            <div className="cta-contacts">
+              <p><strong>Email:</strong> bukanimamatotowomengroup@gmail.com</p>
+              <p><strong>Phone:</strong> 0719632902</p>
+              <p><strong>Website:</strong> <a href="https://github.com/paul261722/bukanimamatoto-clean" target="_blank" rel="noopener noreferrer">https://github.com/paul261722/bukanimamatoto-clean</a></p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <style jsx>{`
         .about-page {
           overflow-x: hidden;
@@ -415,7 +531,7 @@ const About = () => {
         .hero-title {
           font-size: 3.2rem;
           font-weight: 800;
-          margin-bottom: 25px;
+          margin-bottom: 15px;
           position: relative;
           z-index: 2;
           text-shadow: 0 2px 10px rgba(0,0,0,0.5);
@@ -428,11 +544,17 @@ const About = () => {
         .hero-subtitle {
           font-size: 1.5rem;
           max-width: 700px;
-          margin: 0 auto 30px;
+          margin: 0 auto 10px;
           position: relative;
           z-index: 2;
           color: #e0f7ff;
           font-weight: 300;
+        }
+        
+        .hero-description {
+          font-size: 1.2rem;
+          color: #b0dfff;
+          margin-bottom: 30px;
         }
         
         .hero-icons {
@@ -544,6 +666,32 @@ const About = () => {
           font-size: 1.1rem;
           line-height: 1.7;
           color: #ccefff;
+        }
+        
+        /* Problem & Solution */
+        .problem-solution-section {
+          padding: 80px 0;
+          background: linear-gradient(to bottom, #0a3d62, #0a1a2a);
+        }
+        
+        .problem-card .problem-icon {
+          background: linear-gradient(135deg, #d45c4a, #f7a08a);
+        }
+        
+        .solution-card .solution-icon {
+          background: linear-gradient(135deg, #1a936f, #64c8fa);
+        }
+        
+        .problem-list, .solution-list {
+          text-align: left;
+          padding-left: 20px;
+          font-size: 1.05rem;
+          line-height: 1.8;
+          color: #ccefff;
+        }
+        
+        .problem-list li, .solution-list li {
+          margin-bottom: 10px;
         }
         
         /* Objectives Section */
@@ -690,10 +838,102 @@ const About = () => {
           font-weight: 300;
         }
         
+        /* Funding Section */
+        .funding-section {
+          padding: 100px 0;
+          background: linear-gradient(to bottom, #0a3d62, #0a1a2a);
+        }
+        
+        .funding-card {
+          text-align: center;
+          padding: 50px 40px;
+        }
+        
+        .funding-icon {
+          font-size: 4rem;
+          color: #64c8fa;
+          margin-bottom: 20px;
+        }
+        
+        .funding-amount {
+          font-size: 3rem;
+          font-weight: 800;
+          background: linear-gradient(90deg, #88d498, #64c8fa);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 20px;
+        }
+        
+        .funding-description {
+          font-size: 1.2rem;
+          color: #ccefff;
+          max-width: 700px;
+          margin: 0 auto 30px;
+        }
+        
+        .funding-use {
+          padding: 20px;
+          background: rgba(255,255,255,0.05);
+          border-radius: 12px;
+          border: 1px solid rgba(100,200,255,0.1);
+        }
+        
+        .use-icon {
+          font-size: 2.5rem;
+          color: #88d498;
+          margin-bottom: 10px;
+        }
+        
+        .funding-use h5 {
+          color: #64c8fa;
+          margin-bottom: 10px;
+        }
+        
+        .funding-use p {
+          color: #ccefff;
+          margin-bottom: 0;
+        }
+        
+        .funding-outcomes {
+          margin-top: 30px;
+          padding: 20px;
+          background: rgba(255,255,255,0.05);
+          border-radius: 12px;
+          border: 1px solid rgba(100,200,255,0.1);
+        }
+        
+        .funding-outcomes h5 {
+          color: #88d498;
+          margin-bottom: 15px;
+        }
+        
+        .funding-outcomes ul {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          flex-wrap: wrap;
+        }
+        
+        .funding-outcomes ul li {
+          color: #ccefff;
+          position: relative;
+          padding-left: 25px;
+        }
+        
+        .funding-outcomes ul li::before {
+          content: '✓';
+          color: #88d498;
+          font-weight: bold;
+          position: absolute;
+          left: 0;
+        }
+        
         /* Capacity Building Section */
         .capacity-section {
           padding: 100px 0;
-          background: linear-gradient(to bottom, #0a3d62, #0a1a2a);
+          background: linear-gradient(to bottom, #0a1a2a, #0a3d62);
         }
         
         .capacity-intro {
@@ -750,7 +990,7 @@ const About = () => {
         /* Financial Inclusion Section */
         .finance-section {
           padding: 100px 0;
-          background: linear-gradient(to bottom, #0a1a2a, #0a3d62);
+          background: linear-gradient(to bottom, #0a3d62, #0a1a2a);
         }
         
         .finance-intro {
@@ -801,6 +1041,45 @@ const About = () => {
           margin-right: 10px;
         }
         
+        /* Call to Action */
+        .cta-section {
+          padding: 80px 0;
+          background: linear-gradient(to bottom, #0a1a2a, #0a3d62);
+        }
+        
+        .cta-card {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        
+        .cta-title {
+          font-size: 2.5rem;
+          font-weight: 800;
+          color: #88d498;
+          margin-bottom: 20px;
+        }
+        
+        .cta-text {
+          font-size: 1.2rem;
+          color: #ccefff;
+          margin-bottom: 30px;
+        }
+        
+        .cta-contacts p {
+          font-size: 1.1rem;
+          color: #e0f7ff;
+          margin-bottom: 10px;
+        }
+        
+        .cta-contacts a {
+          color: #64c8fa;
+          text-decoration: none;
+        }
+        
+        .cta-contacts a:hover {
+          text-decoration: underline;
+        }
+        
         /* Animations */
         @keyframes float {
           0%, 100% { transform: translateY(0); }
@@ -819,6 +1098,10 @@ const About = () => {
           
           .stat-value {
             font-size: 3rem;
+          }
+          
+          .funding-amount {
+            font-size: 2.5rem;
           }
         }
         
@@ -841,6 +1124,15 @@ const About = () => {
           
           .stat-value {
             font-size: 2.5rem;
+          }
+          
+          .funding-amount {
+            font-size: 2rem;
+          }
+          
+          .funding-outcomes ul {
+            flex-direction: column;
+            gap: 10px;
           }
         }
         

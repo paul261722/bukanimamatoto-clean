@@ -73,7 +73,7 @@ const Navigation = () => {
       icon: <FaLeaf className="me-2" />,
       description: 'Our conservation efforts focus on protecting local ecosystems while creating sustainable livelihoods. Activities include mangrove restoration, waste management, and sustainable agriculture.',
       benefits: [
-        'Mangrove restoration along 5km of coastline',
+        'Marine waste management along 5km of the L.VICTORIA LAKE shoreline',
         'Plastic waste recycling initiatives',
         'Training in sustainable farming practices',
         'Eco-tourism development projects'
@@ -101,7 +101,7 @@ const Navigation = () => {
     setExpanded(false);
   };
 
-  // UPDATED: Handle contact form submission with new backend
+  // Handle contact form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -123,7 +123,6 @@ const Navigation = () => {
         mode: "cors"
       });
 
-      // Handle HTTP errors
       if (!response.ok) {
         let errorDetails = 'Server error';
         try {
@@ -137,7 +136,6 @@ const Navigation = () => {
 
       const data = await response.json();
       
-      // Handle backend-specific success/error
       if (data.status === "success") {
         console.log('Form submission successful:', data);
         setFormSubmitted(true);
@@ -181,7 +179,7 @@ const Navigation = () => {
         expanded={expanded}
         onToggle={() => setExpanded(!expanded)}
       >
-        <Container fluid className="px-4">
+        <Container fluid className="px-3 px-md-4">
           <Navbar.Brand as={Link} to="/" className="fw-bold d-flex align-items-center">
             <div className="brand-logo">
               <img 
@@ -189,9 +187,9 @@ const Navigation = () => {
                 alt="BUKANI MAMA TOTO Logo" 
                 className="logo-image"
               />
-              <div className="wave-effect"></div>
+              <div className="wave-effect d-none d-sm-block"></div>
             </div>
-            <div className="brand-text ms-3">
+            <div className="brand-text ms-2 ms-sm-3">
               <div className="brand-title">BUKANI MAMA TOTO</div>
               <div className="brand-subtitle">Empowering Women • Blue Economy</div>
             </div>
@@ -471,6 +469,7 @@ const Navigation = () => {
           align-items: center;
           justify-content: center;
           overflow: hidden;
+          flex-shrink: 0;
         }
         
         .logo-image {
@@ -494,6 +493,7 @@ const Navigation = () => {
         
         .brand-text {
           line-height: 1.2;
+          min-width: 0; /* Allows text to shrink gracefully */
         }
         
         .brand-title {
@@ -503,6 +503,7 @@ const Navigation = () => {
           background: linear-gradient(to right, #88d498, #1a936f);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+          white-space: nowrap;
         }
         
         .brand-subtitle {
@@ -510,6 +511,7 @@ const Navigation = () => {
           opacity: 0.8;
           letter-spacing: 0.5px;
           color: #88d498;
+          white-space: nowrap;
         }
         
         .nav-link {
@@ -741,12 +743,12 @@ const Navigation = () => {
         
         @media (max-width: 768px) {
           .brand-logo {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
           }
           
           .brand-title {
-            font-size: 1rem;
+            font-size: 1.05rem;
           }
           
           .brand-subtitle {
@@ -764,20 +766,33 @@ const Navigation = () => {
         
         @media (max-width: 576px) {
           .brand-logo {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
           }
           
           .brand-text {
-            margin-left: 10px !important;
+            margin-left: 8px !important;
           }
           
           .brand-title {
-            font-size: 0.95rem;
+            font-size: 1.2rem; /* Increased for better visibility */
+            white-space: normal; /* Allow wrapping if needed */
+            line-height: 1.1;
           }
           
           .brand-subtitle {
-            font-size: 0.55rem;
+            font-size: 0.7rem; /* Slightly larger */
+            white-space: normal;
+            line-height: 1.2;
+          }
+          
+          .nav-link {
+            padding: 0.6rem 0.8rem !important;
+          }
+          
+          .contact-link {
+            padding: 0.4rem 1rem !important;
+            font-size: 0.9rem;
           }
         }
       `}</style>
