@@ -80,13 +80,17 @@ const JoinPage = () => {
                 <h5>Follow Our Journey</h5>
                 <div className="d-flex gap-3 justify-content-center">
                   {['facebook', 'instagram', 'twitter', 'youtube'].map((platform) => (
-                    <a 
-                      key={platform} 
-                      href="#" 
+                    <button
+                      key={platform}
                       className="btn btn-outline-secondary"
+                      onClick={() => {
+                        // Placeholder: you can replace with actual social links
+                        alert(`Navigate to ${platform} page`);
+                      }}
+                      aria-label={`Follow us on ${platform}`}
                     >
                       <i className={`bi bi-${platform}`}></i>
-                    </a>
+                    </button>
                   ))}
                 </div>
               </Col>

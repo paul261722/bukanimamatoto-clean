@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { 
-  FaFish, FaWater, FaHandHoldingWater, FaLightbulb,
+  FaFish, 
   FaUsers, FaLeaf, FaHeart, FaMapMarkerAlt,
   FaPhone, FaEnvelope, FaTint, FaSeedling,
-  FaShippingFast, FaRecycle
+  FaRecycle
 } from 'react-icons/fa';
 
 const Home = () => {
