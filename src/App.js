@@ -2,12 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartProvider'; // Fixed path
 import Navbar from './Components/Navbar';
-import CartIcon from './Components/CartIcon';
 import CarouselSection from './Components/CarouselSection';
 import Home from './Components/Home';
 import Footer from './Components/Footer';
 import Gallery from './Components/Gallery';
-import mpesalogo from './assets/mpesalogo.png'; // Adjust the path based on your component's location
 
 import Makepayments from './Components/Makepayments';
 import ShopPage from './Components/ShopPage';

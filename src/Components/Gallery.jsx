@@ -182,20 +182,4 @@ const styles = {
   },
 };
 
-// Add hover effects
-const addHoverStyles = `
-  .gallery-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
-  }
-  
-  .gallery-item:hover .image-overlay {
-    opacity: 1;
-  }
-  
-  .gallery-item:hover img {
-    transform: scale(1.05);
-  }
-`;
-
 export default Gallery;
